@@ -15,11 +15,10 @@ public class Player : MonoBehaviour {
     }
 
     Vector3 GetNextPosition(Vector2 dirVec) {
-        //RaycastHit2D[] hitArr = Physics2D.RaycastAll(transform.position, dirVec, Mathf.Infinity, LayerMask.GetMask("Tilemap"));
-        //Debug.Log(hitArr.Length);
-        //for(int i = 0; i < hitArr.Length; i++) {
-        //    Debug.Log(hitArr[i].point);
-        //}
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, dirVec, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
+        if (hit1.collider != null)
+            Debug.Log(hit1.transform.name);
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVec, Mathf.Infinity, LayerMask.GetMask("Tilemap"));
         Vector3Int cellPos = tilemap.WorldToCell(hit.point);
         Vector3 nextPos = tilemap.GetCellCenterWorld(cellPos);
