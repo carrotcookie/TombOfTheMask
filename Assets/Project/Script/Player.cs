@@ -9,6 +9,13 @@ public class Player : MonoBehaviour {
     float xInput;
     float yInput;
 
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Thorn")) {
+            Debug.Log("Player »ç¸Á");
+            gameObject.SetActive(false);
+        }
+    }
+
     void Update() {
         GetInput();
         Move();
