@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &105803998
 Transform:
   m_ObjectHideFlags: 0
@@ -2565,7 +2565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e08b9e2e5e47c54abecf41696674925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 832855322}
 --- !u!61 &762679752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2637,7 +2636,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &765316964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2755128398794266307, guid: 0e2cd29dd42abd344bfe28df7de69fe2,
@@ -2987,7 +2986,7 @@ GameObject:
   - component: {fileID: 832855326}
   m_Layer: 6
   m_Name: Tilemap Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4113,7 +4112,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
@@ -4182,7 +4181,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0.1
+  m_EdgeRadius: 0.18
   m_ColliderPaths:
   - m_Collider: {fileID: 832855323}
     m_ColliderPaths:
@@ -6659,7 +6658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1705591121
 Transform:
   m_ObjectHideFlags: 0

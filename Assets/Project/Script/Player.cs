@@ -4,16 +4,13 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour {
-    [SerializeField] Tilemap tilemap;
+    Rigidbody2D rigid = null;
+    Vector2 inputVec = Vector2.zero;
+    float moveSpeed = 5;
     bool isMove = false;
-    float xInput;
-    float yInput;
 
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Thorn")) {
-            Debug.Log("Player 사망");
-            gameObject.SetActive(false);
-        }
+    void Awake() {
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     void Update() {
@@ -21,53 +18,32 @@ public class Player : MonoBehaviour {
         Move();
     }
 
-    Vector3 GetNextPosition(Vector2 dirVec) {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, dirVec, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
-        if (hit1.collider != null)
-            Debug.Log(hit1.transform.name);
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVec, Mathf.Infinity, LayerMask.GetMask("Tilemap"));
-        Vector3Int cellPos = tilemap.WorldToCell(hit.point);
-        Vector3 nextPos = tilemap.GetCellCenterWorld(cellPos);
-        return nextPos;
+    void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log("Enter 충돌!!!");
+        if (isMove) {
+            if (collision.CompareTag("Terrain")) {
+                isMove = false;
+                rigid.velocity = Vector2.zero;
+            }
+        }
     }
 
     void GetInput() {
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
+        inputVec.x = Input.GetAxisRaw("Horizontal");
+        inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
     void Move() {
-        if (isMove)
+        if (isMove) {
+            Debug.Log("움직이는 중입니다.");
             return;
-        if (xInput == 0 && yInput == 0)
+        }
+        if (inputVec == Vector2.zero) {
+            Debug.Log("입력이 없습니다.");
             return;
-
+        }
 
         isMove = true;
-        Vector2 dirVec = new Vector2(xInput, yInput);
-        Vector3 endPos = GetNextPosition(dirVec);
-        StartCoroutine(MoveTo(endPos));
-    }
-
-    IEnumerator MoveTo(Vector2 endPos) {
-        Vector3 startPos = transform.position;
-        float timer = 0;
-        float duration = 0.05f * Vector3.Distance(startPos, endPos);
-
-        while (true) {
-            timer += Time.deltaTime / duration;
-
-            if (timer < 1f)
-                transform.position = Vector2.Lerp(startPos, endPos, timer);
-            else {
-                timer = 1f;
-                transform.position = endPos;
-                isMove = false;
-                break;
-            }
-
-            yield return null;
-        }
+        rigid.velocity = inputVec * moveSpeed;
     }
 }

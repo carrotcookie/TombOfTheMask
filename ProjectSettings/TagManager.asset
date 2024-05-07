@@ -9,6 +9,7 @@ TagManager:
   - Exit
   - Obstacle
   - Thorn
+  - Terrain
   layers:
   - Default
   - TransparentFX
