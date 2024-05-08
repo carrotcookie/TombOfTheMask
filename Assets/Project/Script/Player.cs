@@ -37,23 +37,18 @@ public class Player : MonoBehaviour {
         if (inputVec == Vector2.zero || inputVec == Vector2.one)
             return;
 
-
         isMove = true;
         StartCoroutine(MoveTo(inputVec));
     }
 
-    void Stop(Vector2 dirVec) {
-        Rotate(dirVec);
-        isMove = false;
-
+    void CheckObstacle(Vector2 dirVec) {
         // 완전히 이동하고 나서 장애물 체크를 실행
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVec, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
-        if (!hit)
+        if (!hit) { // 부딪힌 장애물 없을 때
             return;
+        }
 
-        
-
-        if (hit.collider.CompareTag("Thorn")) {
+        if (hit.collider.CompareTag("Thorn")) { // 가시에 부딪혔을 때
             // 사망 처리
             Debug.Log("가시에 질려 사망하였습니다.");
         }
@@ -76,7 +71,7 @@ public class Player : MonoBehaviour {
         }
 
         transform.rotation = Quaternion.Euler(rotVec);
-        spriter.flipX = Random.Range(0, 2) == 0 ? false : true;
+        //spriter.flipX = Random.Range(0, 2) == 0 ? false : true;
     }
 
     Vector3 GetNextPosition(Vector2 dirVec) {
@@ -90,6 +85,11 @@ public class Player : MonoBehaviour {
         Vector3 startPos = transform.position;
         Vector3 endPos = GetNextPosition(dirVec);
 
+        if (startPos == endPos) {
+            isMove = false;
+            yield break;
+        }
+
         float timer = 0;
         float duration = 0.05f * Vector3.Distance(startPos, endPos); // 속도가 일정한 상태에서 거리가 늘면 duration도 늘어남
 
@@ -100,7 +100,9 @@ public class Player : MonoBehaviour {
                 transform.position = Vector2.Lerp(startPos, endPos, timer);
             else {
                 transform.position = endPos;
-                Stop(dirVec);
+                Rotate(dirVec);
+                CheckObstacle(dirVec);
+                isMove = false;
                 break;
             }
 
