@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     SpriteRenderer spriter;
     bool isMove = false;
     Vector2 inputVec = Vector2.zero;
+    Coroutine moveCoroutine;
 
     void Awake() {
         spriter = GetComponent<SpriteRenderer>();
@@ -24,6 +25,17 @@ public class Player : MonoBehaviour {
             // 사망 처리
             Debug.Log("가시에 질려 사망하였습니다.");
         }
+        else if (collision.CompareTag("Exit")) {
+            Debug.Log("출구 도착!!");
+            Setup();
+        }
+    }
+
+    void Setup() {
+        StopCoroutine(moveCoroutine);
+        isMove = false;
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     void GetInput() {
@@ -38,7 +50,7 @@ public class Player : MonoBehaviour {
             return;
 
         isMove = true;
-        StartCoroutine(MoveTo(inputVec));
+        moveCoroutine = StartCoroutine(MoveTo(inputVec));
     }
 
     void CheckObstacle(Vector2 dirVec) {
