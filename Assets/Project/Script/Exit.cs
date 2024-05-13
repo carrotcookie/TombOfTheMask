@@ -7,6 +7,6 @@ public class Exit : MonoBehaviour {
         if (!collision.CompareTag("Player"))
             return;
 
-        StageManager.Instance.GoNextStage();
+        UIManager.Instance.clearPanel.SetActive(true);
     }
 }

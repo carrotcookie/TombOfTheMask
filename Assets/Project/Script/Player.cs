@@ -4,12 +4,29 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
+public struct PlayerProp {
+    public int dots;
+    public int coins;
+    public int stars;
+}
+
 public class Player : MonoBehaviour {
     [SerializeField] Tilemap tilemap;
     SpriteRenderer spriter;
     bool isMove = false;
     Vector2 inputVec = Vector2.zero;
     Coroutine moveCoroutine;
+    PlayerProp prop;
+
+    public void UpdateProp(int dots, int coins, int stars) {
+        prop.dots = dots;
+        prop.coins += coins;
+        prop.stars = stars;
+    }
+
+    public PlayerProp GetProp() {
+        return prop;
+    }
 
     void Awake() {
         spriter = GetComponent<SpriteRenderer>();

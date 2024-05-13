@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star : ScoreProp {
-    UIStar uiStar;
+public class Coin : ScoreProp {
+    UICoin uiCoin;
 
     protected override void Component() {
-        uiStar = FindObjectOfType<UIStar>();
+        uiCoin = UIManager.Instance.uiCoin;
     }
 
     protected override void RenewTopBarUI() {
-        uiStar.RenewActiveStar();
-        StageManager.Instance.IncreaseStars();
+        uiCoin.RenewCoinCount();
+        StageManager.Instance.IncreaseCoins();
     }
 
     protected override void UpdateLogic() {
-        
+
     }
 }

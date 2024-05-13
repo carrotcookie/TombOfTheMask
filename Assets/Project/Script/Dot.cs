@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Dot : ScoreProp {
-    UICoin uiCoin;
 
     protected override void Component() {
-        uiCoin = UIManager.Instance.uiCoin;
+        
     }
 
     protected override void RenewTopBarUI() {
-        uiCoin.RenewCoinCount();
+        StageManager.Instance.IncreaseDots();
     }
 
     protected override void UpdateLogic() {

@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
-    public static UIManager Instance { get; private set; }
-    public UICoin uiCoin;
-    public UIStar uiStar;
-    public GameObject clearPanel;
+public class GameManager : MonoBehaviour {
+    public static GameManager Instance;
+    public Player Player;
 
     void Awake() {
         if (Instance == null)

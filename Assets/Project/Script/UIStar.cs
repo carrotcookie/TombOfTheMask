@@ -27,4 +27,8 @@ public class UIStar : MonoBehaviour {
             starArr[i].color = new Color(0.5f, 0, 1, 1);
         }
     }
+
+    public int GetActiveStarCount() {
+        return activeStarCount;
+    }
 }
