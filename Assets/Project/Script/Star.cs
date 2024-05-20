@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Star : ScoreProp {
-    UIStar uiStar;
 
     protected override void Component() {
-        uiStar = FindObjectOfType<UIStar>();
+
     }
 
-    protected override void RenewTopBarUI() {
-        uiStar.RenewActiveStar();
-        StageManager.Instance.IncreaseStars();
+    protected override void RenewScore() {
+        GameManager.Instance.IncreaseStar();
+        UIManager.Instance.IncreaseStar();
     }
 
     protected override void UpdateLogic() {

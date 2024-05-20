@@ -11,6 +11,11 @@ public class UICoin : MonoBehaviour {
         coinCountText = GetComponentInChildren<Text>();
     }
 
+    void OnDisable() {
+        coinCount = 0;
+        coinCountText.text = "0";
+    }
+
     public void RenewCoinCount() {
         coinCount++;
         coinCountText.text = coinCount.ToString();

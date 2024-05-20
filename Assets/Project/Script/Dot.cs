@@ -9,8 +9,9 @@ public class Dot : ScoreProp {
         
     }
 
-    protected override void RenewTopBarUI() {
-        StageManager.Instance.IncreaseDots();
+    protected override void RenewScore() {
+        GameManager.Instance.IncreaseDot();
+
     }
 
     protected override void UpdateLogic() {

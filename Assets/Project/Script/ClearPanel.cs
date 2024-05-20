@@ -9,8 +9,10 @@ public class ClearPanel : MonoBehaviour {
     [SerializeField] Text dotText;
 
     void OnEnable() {
-        dotSlider.value = (float)StageManager.Instance.dots / StageManager.Instance.totalDots;
-        stageText.text = "Stage " + (StageManager.Instance.currentStage + 1);
-        dotText.text = $"{StageManager.Instance.dots} / {StageManager.Instance.totalDots}";
+        StageScore score = GameManager.Instance.GetClearStageScore();
+        StageData data = GameManager.Instance.GetStageData(score.stageID);
+        stageText.text = score.stageID.ToString();
+        dotSlider.value = (float) score.dot / data.dotPositions.Count;
+        dotText.text = string.Format($"{score.dot} / {data.dotPositions.Count}");
     }
 }

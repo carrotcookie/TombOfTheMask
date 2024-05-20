@@ -7,9 +7,9 @@ TagManager:
   - Coin
   - Star
   - Exit
-  - Obstacle
-  - Thorn
   - Dot
+  - Static
+  - Detection
   layers:
   - Default
   - TransparentFX

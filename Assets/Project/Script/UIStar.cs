@@ -12,23 +12,19 @@ public class UIStar : MonoBehaviour {
         activeStarCount++;
     }
 
+    public int GetActiveStarCount() {
+        return activeStarCount;
+    }
+
     void Awake() {
         starArr = GetComponentsInChildren<Image>();
     }
 
-    void OnEnable() {
-        Setup();
-    }
-
-    public void Setup() {
+    void OnDisable() {
         activeStarCount = 0;
 
         for (int i = 0; i < starArr.Length; i++) {
             starArr[i].color = new Color(0.5f, 0, 1, 1);
         }
-    }
-
-    public int GetActiveStarCount() {
-        return activeStarCount;
     }
 }

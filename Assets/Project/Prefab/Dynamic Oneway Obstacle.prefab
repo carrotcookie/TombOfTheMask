@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 131524964543124406}
   - component: {fileID: 7837493711026981366}
   - component: {fileID: 4971320891065788616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Thorn
   m_TagString: Thorn
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 916671357, guid: bdbeb40736c1efe4c9e5d5c261701e1c, type: 3}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,9 +177,9 @@ GameObject:
   - component: {fileID: 6310479175452454843}
   - component: {fileID: 3547489047126404344}
   - component: {fileID: 9208649142089393135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dynamic Oneway Obstacle
-  m_TagString: Untagged
+  m_TagString: Detection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,9 +240,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -232522018, guid: bdbeb40736c1efe4c9e5d5c261701e1c, type: 3}
-  m_Color: {r: 1, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

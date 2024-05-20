@@ -32,6 +32,10 @@ public class Player : MonoBehaviour {
         spriter = GetComponent<SpriteRenderer>();
     }
 
+    void Start() {
+        gameObject.SetActive(false);
+    }
+
     void Update() {
         GetInput();
         Move();
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour {
         isMove = false;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.Euler(Vector3.zero);
+        gameObject.SetActive(false);
     }
 
     void GetInput() {
@@ -77,7 +82,7 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        if (hit.collider.CompareTag("Thorn")) { // 가시에 부딪혔을 때
+        if (hit.collider.CompareTag("Static")) { // 가시에 부딪혔을 때
             // 사망 처리
             Debug.Log("가시에 질려 사망하였습니다.");
         }

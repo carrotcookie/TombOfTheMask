@@ -7,7 +7,7 @@ public abstract class ScoreProp : MonoBehaviour {
     float timer;
 
     protected abstract void UpdateLogic();
-    protected abstract void RenewTopBarUI();
+    protected abstract void RenewScore();
     protected abstract void Component();
 
     void Awake() {
@@ -20,11 +20,19 @@ public abstract class ScoreProp : MonoBehaviour {
         UpdateLogic();
     }
 
+    void OnEnable() {
+        timer = 0f;
+    }
+
+    void OnDisable() {
+        timer = 0f;
+    }
+
     void OnTriggerEnter2D(Collider2D collision) {
         if (!collision.CompareTag("Player"))
             return;
 
-        RenewTopBarUI();
+        RenewScore();
         gameObject.SetActive(false);
     }
 
