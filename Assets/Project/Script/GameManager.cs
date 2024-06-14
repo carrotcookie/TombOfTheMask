@@ -15,17 +15,12 @@ public class StageData {
     public Vector3 exitPosition;
 }
 [System.Serializable]
-public class StageScore {
+public struct StageScore {
     public int stageID;
+    public int totalDot;
     public int dot;
     public int coin;
     public int star;
-
-    public void Init() {
-        dot = 0;
-        coin = 0;
-        star = 0;
-    }
 }
 
 public class GameManager : MonoBehaviour {
@@ -55,11 +50,8 @@ public class GameManager : MonoBehaviour {
         return score;
     }
 
-    public StageData GetStageData(int num) {
-        if (num == 0)
-            num = 1;
-
-        return stageDataSO.stageDatas[num - 1];
+    public int GetStageTotalDots(int num) {
+        return stageDataSO.stageDatas[num - 1].dotPositions.Count;
     }
 
     void Awake() {
@@ -154,10 +146,10 @@ public class GameManager : MonoBehaviour {
 
     public void GoStage(int num) {
         score.stageID = num;
+        score.totalDot = stageDataSO.stageDatas[num - 1].dotPositions.Count;
         mapID = num;
         Player.gameObject.SetActive(true);
         UIManager.Instance.ShowTopBar();
-        score.Init();
         Tilemap terrain = tilemapArr[0];
         BoundsInt bounds = terrain.cellBounds;
 
